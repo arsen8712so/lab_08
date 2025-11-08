@@ -1,0 +1,212 @@
+/* ------------------------------------------------------------------ */
+/* БАЗОВІ СТИЛІ */
+/* ------------------------------------------------------------------ */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: #f0f0f0;
+    padding: 20px;
+}
+
+.page-container {
+    display: flex;
+    justify-content: center;
+}
+
+.article-card {
+    background-color: #004d40;
+    color: #ffffff;
+    max-width: 1200px;
+    width: 100%;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Навігація */
+.card-nav {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.nav-item {
+    color: #a7f3d0;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.nav-divider {
+    color: #a7f3d0;
+    margin: 0 10px;
+}
+
+/* Заголовок статті */
+.article-title {
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 25px;
+    width: 70%; 
+    /* Вирівнювання заголовка по лівому краю (за замовчуванням) */
+    text-align: left;
+}
+
+/* Блок мета-інформації (Flex Container) */
+.article-meta {
+    display: flex; 
+    align-items: center;
+    gap: 20px; 
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Аватар */
+.meta-avatar {
+    flex-shrink: 0; 
+    display: flex;
+    align-items: center;
+}
+
+.avatar-image {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%; 
+    object-fit: cover; 
+    border: 3px solid #ffc107; 
+}
+
+/* Мета-деталі (Flex Container) */
+.meta-details {
+    display: flex; 
+    flex-direction: column; 
+    gap: 10px;
+    flex-grow: 1; 
+}
+
+/* Кожен елемент мета-інформації */
+.meta-item {
+    display: flex;
+    flex-direction: column;
+    /* Усі мета-елементи вирівняні по лівому краю */
+    text-align: left; 
+}
+
+.meta-label {
+    font-size: 14px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.7); 
+    white-space: nowrap;
+}
+
+.meta-value {
+    font-size: 16px;
+    font-weight: 700;
+    color: #ffffff;
+    white-space: nowrap;
+}
+
+.comments-link {
+    color: #a7f3d0; 
+    cursor: pointer;
+    font-weight: 400;
+}
+
+/* ------------------------------------------------------------------ */
+/* 3. ВУЗЬКИЙ ЕКРАН (до 600px) - ОДНА КОЛОНКА */
+/* ------------------------------------------------------------------ */
+@media (max-width: 600px) {
+    .article-card {
+        padding: 20px;
+    }
+
+    .article-title {
+        font-size: 24px;
+    }
+
+    .article-meta {
+        align-items: flex-start;
+        gap: 10px; 
+    }
+    
+    .meta-details {
+        flex-direction: column;
+        gap: 10px; 
+    }
+
+    .meta-item {
+        /* Явно встановлюємо, якщо потрібно перекрити інші стилі */
+        text-align: left; 
+    }
+}
+
+/* ------------------------------------------------------------------ */
+/* 2. СЕРЕДНІЙ ЕКРАН (601px - 960px) - ДВІ КОЛОНКИ */
+/* ------------------------------------------------------------------ */
+@media (min-width: 601px) and (max-width: 960px) {
+    .article-title {
+        font-size: 28px;
+    }
+
+    .article-meta {
+        align-items: flex-start;
+        gap: 15px; 
+    }
+
+    .meta-details {
+        flex-direction: row; 
+        flex-wrap: wrap; 
+        /* Змінено: використовуємо space-around для рівномірного лівого вирівнювання 
+           або залишаємо space-between і прибираємо text-align: right */
+        justify-content: space-between; 
+        align-items: flex-start;
+        gap: 15px 0; 
+    }
+
+    .meta-item {
+        flex-basis: calc(50% - 10px); 
+        flex-grow: 1;
+        text-align: left; /* Встановлено ліве вирівнювання */
+    }
+
+    /* Видалено .meta-item:nth-child(2n) { text-align: right; } */
+}
+
+/* ------------------------------------------------------------------ */
+/* 1. ШИРОКИЙ ЕКРАН (961px+) - ЧОТИРИ КОЛОНКИ (Рівномірно) */
+/* ------------------------------------------------------------------ */
+@media (min-width: 961px) {
+    .article-card {
+        max-width: 1000px; 
+    }
+
+    .article-meta {
+        align-items: center;
+        gap: 20px; 
+    }
+
+    .meta-details {
+        flex-direction: row; 
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+
+    .meta-item {
+        flex-basis: 25%; 
+        flex-grow: 1; 
+        flex-shrink: 0;
+        padding-right: 10px; 
+        text-align: left; /* Встановлено ліве вирівнювання */
+    }
+    
+    /* Видалено .meta-item:nth-child(4) { text-align: right; } */
+    /* Всі елементи тепер вирівняні по лівому краю */
+    .meta-item:nth-child(4) { 
+        padding-right: 0;
+    }
+}
